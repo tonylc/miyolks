@@ -1,5 +1,4 @@
 class FeedingsController < ApplicationController
-  protect_from_forgery :except => :create
 
   def index
     @feedings = Feeding.all
