@@ -1,0 +1,21 @@
+<h1>Listing sleepings</h1>
+
+<table>
+  <tr>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @sleepings.each do |sleeping| %>
+  <tr>
+    <td><%= link_to 'Show', sleeping %></td>
+    <td><%= link_to 'Edit', edit_sleeping_path(sleeping) %></td>
+    <td><%= link_to 'Destroy', sleeping, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Sleeping', new_sleeping_path %>

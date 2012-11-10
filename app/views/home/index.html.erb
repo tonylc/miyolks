@@ -1,0 +1,11 @@
+<% content_for :head do %>
+<style>
+  .tracking { margin-top: 1em; }
+</style>
+<% end %>
+
+<div class=tracking>
+  <%= link_to "Feed", feedings_path, remote: true, method: :post, class: "button-block" %>
+  <%= link_to "Diaper Change", changings_path, remote: true, method: :post, class: "button-block" %>
+  <%= link_to "Sleep", sleepings_path, remote: true, method: :post, class: "button-block" %>
+</div>
