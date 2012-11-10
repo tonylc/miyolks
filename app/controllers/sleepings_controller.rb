@@ -19,17 +19,8 @@ class SleepingsController < ApplicationController
   end
 
   def create
-    @sleeping = Sleeping.new
-
-    respond_to do |format|
-      if @sleeping.save
-        format.html { redirect_to @sleeping, notice: 'Sleeping was successfully created.' }
-        format.json { render json: @sleeping, status: :created, location: @sleeping }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @sleeping.errors, status: :unprocessable_entity }
-      end
-    end
+    Sleeping.create!
+    render status: 200, nothing: true and return
   end
 
   def destroy

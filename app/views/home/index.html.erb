@@ -5,7 +5,35 @@
 <% end %>
 
 <div class=tracking>
-  <%= link_to "Feed", feedings_path, remote: true, method: :post, class: "button-block" %>
-  <%= link_to "Diaper Change", changings_path, remote: true, method: :post, class: "button-block" %>
-  <%= link_to "Sleep", sleepings_path, remote: true, method: :post, class: "button-block" %>
+  <a id='feed-me' class='button-block'><span class='count'><%= @feedings_count %></span>Feed</a>
+  <a id='change-me' class='button-block'><span class='count'><%= @changings_count %></span>Diaper Change</a>
+  <a id='sleep-me' class='button-block'><span class='count'><%= @sleepings_count %></span>Sleep</a>
 </div>
+
+<% content_for :script do %>
+<script>
+  $("#feed-me").click(function(e) {
+    var a = $(this);
+    $.post("<%= feedings_path %>", function() {
+      var span = a.find('span');
+      span.text(parseInt(span.text()) + 1);
+    });
+  });
+
+  $("#change-me").click(function(e) {
+    var a = $(this);
+    $.post("<%= changings_path %>", function() {
+      var span = a.find('span');
+      span.text(parseInt(span.text()) + 1);
+    });
+  });
+
+  $("#sleep-me").click(function() {
+    var a = $(this);
+    $.post("<%= sleepings_path %>", function() {
+      var span = a.find('span');
+      span.text(parseInt(span.text()) + 1);
+    });
+  });
+</script>
+<% end %>

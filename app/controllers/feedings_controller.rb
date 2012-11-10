@@ -20,17 +20,8 @@ class FeedingsController < ApplicationController
   end
 
   def create
-    @feeding = Feeding.new
-
-    respond_to do |format|
-      if @feeding.save
-        format.html { redirect_to @feeding, notice: 'Feeding was successfully created.' }
-        format.json { render json: @feeding, status: :created, location: @feeding }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @feeding.errors, status: :unprocessable_entity }
-      end
-    end
+    Feeding.create!
+    render status: 200, nothing: true and return
   end
 
   def destroy

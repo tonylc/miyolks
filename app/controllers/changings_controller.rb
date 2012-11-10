@@ -19,9 +19,8 @@ class ChangingsController < ApplicationController
   end
 
   def create
-    Changing.create
-
-    render nothing: true
+    Changing.create!
+    render status: 200, nothing: true and return
   end
 
   def destroy
