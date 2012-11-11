@@ -20,7 +20,7 @@ class SleepingsController < ApplicationController
 
   def create
     Sleeping.create!
-    render status: 200, nothing: true and return
+    render nothing: true
   end
 
   def destroy

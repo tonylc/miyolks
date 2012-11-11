@@ -20,7 +20,7 @@ class FeedingsController < ApplicationController
 
   def create
     Feeding.create!
-    render status: 200, nothing: true and return
+    render nothing: true
   end
 
   def destroy
