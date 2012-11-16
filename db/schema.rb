@@ -11,18 +11,25 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121110091931) do
+ActiveRecord::Schema.define(:version => 20121114182815) do
 
-  create_table "changings", :force => true do |t|
+  create_table "changes", :force => true do |t|
+    t.boolean  "pee"
+    t.boolean  "poo"
     t.datetime "time", :null => false
   end
 
-  create_table "feedings", :force => true do |t|
-    t.datetime "time", :null => false
+  create_table "feeding_schedules", :force => true do |t|
+    t.boolean  "bottled"
+    t.decimal  "ounces"
+    t.boolean  "left"
+    t.datetime "start",   :null => false
+    t.datetime "end"
   end
 
-  create_table "sleepings", :force => true do |t|
-    t.datetime "time", :null => false
+  create_table "sleeping_schedules", :force => true do |t|
+    t.datetime "start", :null => false
+    t.datetime "end"
   end
 
 end

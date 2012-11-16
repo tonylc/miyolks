@@ -1,7 +1,7 @@
-class FeedingsController < ApplicationController
+class FeedingSchedulesController < ApplicationController
 
   def index
-    @feedings = Feeding.all
+    @feedings = FeedingSchedule.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,7 +10,7 @@ class FeedingsController < ApplicationController
   end
 
   def show
-    @feeding = Feeding.find(params[:id])
+    @feeding = FeedingSchedule.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,12 +19,12 @@ class FeedingsController < ApplicationController
   end
 
   def create
-    Feeding.create!
+    FeedingSchedule.create!
     render nothing: true
   end
 
   def destroy
-    @feeding = Feeding.find(params[:id])
+    @feeding = FeedingSchedule.find(params[:id])
     @feeding.destroy
 
     respond_to do |format|

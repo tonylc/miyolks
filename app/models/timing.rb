@@ -1,5 +1,5 @@
 module Timing
-  def set_time
-    self.time = DateTime.now
+  def start_time
+    self.start = DateTime.now
   end
 end

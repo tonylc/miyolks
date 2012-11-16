@@ -1,9 +1,9 @@
 require 'spec_helper'
 
-describe Changing do
+describe Change do
   describe "before save" do
     let(:now) { DateTime.new(2012,11,11) }
-    subject { Changing.create }
+    subject { Change.create }
 
     before do
       DateTime.stubs(:now).returns(now)

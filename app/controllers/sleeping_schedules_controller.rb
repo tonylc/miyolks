@@ -1,7 +1,7 @@
-class SleepingsController < ApplicationController
+class SleepingSchedulesController < ApplicationController
 
   def index
-    @sleepings = Sleeping.all
+    @sleepings = SleepingSchedule.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,7 +10,7 @@ class SleepingsController < ApplicationController
   end
 
   def show
-    @sleeping = Sleeping.find(params[:id])
+    @sleeping = SleepingSchedule.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,12 +19,12 @@ class SleepingsController < ApplicationController
   end
 
   def create
-    Sleeping.create!
+    SleepingSchedule.create!
     render nothing: true
   end
 
   def destroy
-    @sleeping = Sleeping.find(params[:id])
+    @sleeping = SleepingSchedule.find(params[:id])
     @sleeping.destroy
 
     respond_to do |format|

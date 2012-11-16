@@ -1,7 +1,7 @@
-class ChangingsController < ApplicationController
+class ChangesController < ApplicationController
 
   def index
-    @changings = Changing.all
+    @changings = Change.all
 
     respond_to do |format|
       format.html # index.html.erb
@@ -10,7 +10,7 @@ class ChangingsController < ApplicationController
   end
 
   def show
-    @changing = Changing.find(params[:id])
+    @changing = Change.find(params[:id])
 
     respond_to do |format|
       format.html # show.html.erb
@@ -19,12 +19,12 @@ class ChangingsController < ApplicationController
   end
 
   def create
-    Changing.create!
+    Change.create!
     render nothing: true
   end
 
   def destroy
-    @changing = Changing.find(params[:id])
+    @changing = Change.find(params[:id])
     @changing.destroy
 
     respond_to do |format|

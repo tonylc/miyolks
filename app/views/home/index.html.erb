@@ -15,7 +15,7 @@
   var token = "<%= form_authenticity_token %>";
   $("#feed-me").click(function(e) {
     var a = $(this);
-    $.post("<%= feedings_path %>", {authenticity_token: token}, function() {
+    $.post("<%= feeding_schedules_path %>", {authenticity_token: token}, function() {
       var span = a.find('span');
       span.text(parseInt(span.text()) + 1);
     });
@@ -23,7 +23,7 @@
 
   $("#change-me").click(function(e) {
     var a = $(this);
-    $.post("<%= changings_path %>", {authenticity_token: token}, function() {
+    $.post("<%= changes_path %>", {authenticity_token: token}, function() {
       var span = a.find('span');
       span.text(parseInt(span.text()) + 1);
     });
@@ -31,7 +31,7 @@
 
   $("#sleep-me").click(function() {
     var a = $(this);
-    $.post("<%= sleepings_path %>", {authenticity_token: token}, function() {
+    $.post("<%= sleeping_schedules_path %>", {authenticity_token: token}, function() {
       var span = a.find('span');
       span.text(parseInt(span.text()) + 1);
     });

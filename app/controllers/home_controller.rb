@@ -1,7 +1,7 @@
 class HomeController < ApplicationController
   def index
-    @feedings_count = Feeding.count
-    @changings_count = Changing.count
-    @sleepings_count = Sleeping.count
+    @feedings_count = FeedingSchedule.count
+    @changings_count = Change.count
+    @sleepings_count = SleepingSchedule.count
   end
 end

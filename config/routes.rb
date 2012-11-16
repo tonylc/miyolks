@@ -1,8 +1,8 @@
 Feedcharlotte::Application.routes.draw do
 
-  resources :changings, only: [:create, :delete, :show, :index]
-  resources :feedings, only: [:create, :delete, :show, :index]
-  resources :sleepings, only: [:create, :delete, :show, :index]
+  resources :changes, only: [:create, :delete, :show, :index]
+  resources :feeding_schedules, only: [:create, :delete, :show, :index]
+  resources :sleeping_schedules, only: [:create, :delete, :show, :index]
 
   root :to => "home#index"
 end
