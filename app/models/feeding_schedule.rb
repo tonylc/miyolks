@@ -1,5 +1,6 @@
 class FeedingSchedule < ActiveRecord::Base
-  include Timing
+  attr_accessible :bottled, :left, :start
 
-  before_save :start_time
+  validates_presence_of :start
+  validates :bottled, :inclusion => {:in => [true, false]}
 end

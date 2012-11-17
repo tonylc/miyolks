@@ -1,0 +1,55 @@
+<% content_for :head do %>
+<style>
+  .block-section {
+    height: 45px;
+  }
+  .bi-select {
+    height: 35px;
+    width: 45px;
+  }
+</style>
+
+<% end %>
+
+<ul class="segmented-controller">
+  <li><a class="" href="#bottled-section">Bottled</a>
+  <li><a class="" href="#breast-section">Breast</a>
+</ul>
+<%= form_for feeding do |f| %>
+  <%= f.hidden_field :bottled %>
+  <ul class="inset list">
+    <li id="bottled-section" class="feed-select segmented-controller-item">
+    <li id="breast-section" class="feed-select segmented-controller-item active">
+      <div class="block-section">
+        <%= f.hidden_field :left %>
+        <a class='bi-select button'>L</a>
+        <a class='bi-select button'>R</a>
+      </div>
+      <div class="block-section">
+        <a style="display:none;" class='feed-start bi-select button'>Start</a>
+      </div>
+    </li>
+  </ul>
+  <%= f.hidden_field :start %>
+<% end %>
+
+<% content_for :script do %>
+<script>
+  $('.bi-select').click(function() {
+    $("#feeding_schedule_bottled").val("false");
+    $('.bi-select').removeClass('active');
+    $(this).addClass('active');
+    $('.feed-start').show();
+    $('#feeding_schedule_left').val($(this).text() == "L");
+  });
+
+  $('.feed-start').click(function() {
+    if ($(this).text() == 'Start') {
+      $('#feeding_schedule_start').val(new Date());
+      $(this).text('End');
+    } else {
+      $(this).closest('form').submit();
+    }
+  });
+</script>
+<% end %>

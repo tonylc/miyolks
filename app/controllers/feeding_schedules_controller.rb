@@ -19,8 +19,10 @@ class FeedingSchedulesController < ApplicationController
   end
 
   def create
-    FeedingSchedule.create!
-    render nothing: true
+    feeding = FeedingSchedule.new(params[:feeding_schedule])
+    feeding.end = DateTime.now
+    feeding.save!
+    redirect_to root_path
   end
 
   def destroy

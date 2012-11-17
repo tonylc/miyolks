@@ -2,13 +2,13 @@ require 'spec_helper'
 
 describe FeedingSchedulesController do
   describe :create do
-    it "should track feeding now" do
+    it "should finish feed tracking" do
       FeedingSchedule.count.should == 0
 
-      post :create
+      post :create, feeding_schedule: {bottled: false, left: true, start: DateTime.now}
 
-      response.should be_success
-      response.body.should be_blank
+      response.should redirect_to root_path
+      FeedingSchedule.last.end.should_not be_blank
       FeedingSchedule.count.should == 1
     end
   end

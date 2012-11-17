@@ -4,5 +4,6 @@ class HomeController < ApplicationController
     @changings_count = Change.count
     @sleepings_count = SleepingSchedule.count
     @can_end_sleep = SleepingSchedule.finish_sleep?
+    @feeding = FeedingSchedule.new
   end
 end
