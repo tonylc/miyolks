@@ -3,7 +3,6 @@
   <% if !@can_end_sleep %>
     #end-sleep { display: none; }
   <% end %>
-  .tracking { margin-top: 1em; }
   .list .button {
     position: relative;
     right: auto;
@@ -13,12 +12,12 @@
 <% end %>
 
 <ul class="segmented-controller">
-  <li><a href="#feed-section">Feed</a>
-  <li><a href="#change-section">Change</a>
-  <li><a href="#sleep-section">Sleep</a>
+  <li><a href="#feed-section"><span class='count'><%= @feedings_count %></span>Feed</a>
+  <li><a href="#change-section"><span class='count'><%= @changings_count %></span>Change</a>
+  <li><a href="#sleep-section"><span class='count'><%= @sleepings_count %></span>Sleep</a>
 </ul>
 <ul class="inset list">
-  <li id="feed-section" class="segmented-controller-item active">
+  <li id="feed-section" class="segmented-controller-item">
     <%= render "feeding_section", feeding: @feeding %>
   </li>
   <li id="change-section" class="segmented-controller-item">
@@ -30,31 +29,9 @@
   </li>
 </ul>
 
-<div class=tracking>
-  <a id='feed-me' class='button-block'><span class='count'><%= @feedings_count %></span>Feed</a>
-  <a id='change-me' class='button-block'><span class='count'><%= @changings_count %></span>Diaper Change</a>
-  <a id='start-sleep' class='button-block'><span class='count'><%= @sleepings_count %></span>Sleep</a>
-</div>
-
 <% content_for :script do %>
 <script>
   var token = "<%= form_authenticity_token %>";
-
-  $("#feed-me").click(function() {
-    var a = $(this);
-    $.post("<%= feeding_schedules_path %>", {authenticity_token: token}, function() {
-      var span = a.find('span');
-      span.text(parseInt(span.text()) + 1);
-    });
-  });
-
-  $("#change-me").click(function() {
-    var a = $(this);
-    $.post("<%= changes_path %>", {authenticity_token: token}, function() {
-      var span = a.find('span');
-      span.text(parseInt(span.text()) + 1);
-    });
-  });
 
   $("#start-sleep").click(function() {
     var a = $(this);
@@ -71,6 +48,5 @@
       a.hide();
     });
   });
-
 </script>
 <% end %>
