@@ -1,5 +1,9 @@
 class SleepingSchedulesController < ApplicationController
 
+  def new
+    @sleeping = SleepingSchedule.new
+  end
+
   def index
     @sleepings = SleepingSchedule.all
 
@@ -20,6 +24,15 @@ class SleepingSchedulesController < ApplicationController
 
   def create
     SleepingSchedule.create!
+    render nothing: true
+  end
+
+  def edit
+    @sleeping = SleepingSchedule.find(params[:id])
+  end
+
+  def end_sleep
+    SleepingSchedule.last.update_attribute(:end, DateTime.now)
     render nothing: true
   end
 

@@ -1,13 +1,39 @@
 <% content_for :head do %>
 <style>
+  <% if !@can_end_sleep %>
+    #end-sleep { display: none; }
+  <% end %>
   .tracking { margin-top: 1em; }
+  .list .button {
+    position: relative;
+    right: auto;
+    float: left;
+  }
 </style>
 <% end %>
+
+<ul class="segmented-controller">
+  <li><a href="#feed-section">Feed</a>
+  <li><a href="#change-section">Change</a>
+  <li><a href="#sleep-section">Sleep</a>
+</ul>
+<ul class="inset list">
+  <li id="feed-section" class="segmented-controller-item">
+    Item 1
+  </li>
+  <li id="change-section" class="segmented-controller-item">
+    Item 2
+  </li>
+  <li id="sleep-section" class="segmented-controller-item active">
+    <a id='end-sleep' class='button'>End</a>
+    <a id='start-sleep' class='button'>Start</a>
+  </li>
+</ul>
 
 <div class=tracking>
   <a id='feed-me' class='button-block'><span class='count'><%= @feedings_count %></span>Feed</a>
   <a id='change-me' class='button-block'><span class='count'><%= @changings_count %></span>Diaper Change</a>
-  <a id='sleep-me' class='button-block'><span class='count'><%= @sleepings_count %></span>Sleep</a>
+  <a id='start-sleep' class='button-block'><span class='count'><%= @sleepings_count %></span>Sleep</a>
 </div>
 
 <% content_for :script do %>
@@ -29,12 +55,21 @@
     });
   });
 
-  $("#sleep-me").click(function() {
+  $("#start-sleep").click(function() {
     var a = $(this);
     $.post("<%= sleeping_schedules_path %>", {authenticity_token: token}, function() {
       var span = a.find('span');
       span.text(parseInt(span.text()) + 1);
+      $("#end-sleep").show();
     });
   });
+
+  $("#end-sleep").click(function() {
+    var a = $(this);
+    $.post("<%= end_sleep_sleeping_schedules_path %>", {authenticty_token: token}, function() {
+      a.hide();
+    });
+  });
+
 </script>
 <% end %>
