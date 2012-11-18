@@ -5,10 +5,9 @@ describe ChangesController do
     it "should track changing now" do
       Change.count.should == 0
 
-      post :create
+      post :create, change: {pee: true}
 
-      response.should be_success
-      response.body.should be_blank
+      response.should redirect_to root_path
       Change.count.should == 1
     end
   end

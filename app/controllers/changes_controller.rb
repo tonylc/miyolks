@@ -19,8 +19,8 @@ class ChangesController < ApplicationController
   end
 
   def create
-    Change.create!
-    render nothing: true
+    Change.create!(params[:change])
+    redirect_to root_path
   end
 
   def destroy
