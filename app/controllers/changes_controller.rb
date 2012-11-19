@@ -9,6 +9,16 @@ class ChangesController < ApplicationController
     end
   end
 
+  def edit
+    @changing = Change.find(params[:id])
+  end
+
+  def update
+    @changing = Change.find(params[:id])
+    @changing.update_attributes!(params[:change])
+    redirect_to changes_path
+  end
+
   def show
     @changing = Change.find(params[:id])
 
