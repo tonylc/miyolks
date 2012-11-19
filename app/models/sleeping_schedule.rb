@@ -10,6 +10,6 @@ class SleepingSchedule < ActiveRecord::Base
   private
 
   def start_time
-    self.start = DateTime.now
+    self.start = DateTime.now unless self.start.present?
   end
 end

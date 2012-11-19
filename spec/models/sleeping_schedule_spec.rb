@@ -12,6 +12,13 @@ describe SleepingSchedule do
     it "should set the start time to now before save" do
       subject.start.should == now
     end
+
+    it "should not set the start time if it already has been set" do
+      sleeping = SleepingSchedule.new
+      sleeping.start = DateTime.new(2011,1,1)
+      sleeping.save
+      sleeping.start.should_not == now
+    end
   end
 
   describe ".finish_sleep?" do
