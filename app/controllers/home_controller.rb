@@ -6,5 +6,6 @@ class HomeController < ApplicationController
     @can_end_sleep = SleepingSchedule.finish_sleep?
     @feeding = FeedingSchedule.new
     @change = Change.new
+    @last_breast_feed = FeedingSchedule.where(bottled: false).order("id desc").first
   end
 end

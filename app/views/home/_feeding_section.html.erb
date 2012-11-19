@@ -19,14 +19,16 @@
   <%= f.hidden_field :bottled %>
   <ul class="inset list">
     <li id="bottled-section" class="feed-select segmented-controller-item">
-    <li id="breast-section" class="feed-select segmented-controller-item active">
+    <li id="breast-section" class="feed-select segmented-controller-item">
+      <% if @last_breast_feed %>
+      <div>Last Side: <%= @last_breast_feed.left ? "L" : "R" %>
+      <% end %>
       <div class="block-section">
-        <%= f.hidden_field :left %>
-        <a class='bi-select button'>L</a>
-        <a class='bi-select button'>R</a>
+        <%= f.label :left %>
+        <%= f.check_box :left %>
       </div>
       <div class="block-section">
-        <a style="display:none;" class='feed-start bi-select button'>Start</a>
+        <a class='feed-start bi-select button'>Start</a>
       </div>
     </li>
   </ul>
@@ -40,7 +42,6 @@
     $('.bi-select').removeClass('active');
     $(this).addClass('active');
     $('.feed-start').show();
-    $('#feeding_schedule_left').val($(this).text() == "L");
   });
 
   $('.feed-start').click(function() {
