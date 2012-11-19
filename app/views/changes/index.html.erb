@@ -2,20 +2,23 @@
 
 <table>
   <tr>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
-
+    <th>Pee
+    <th>Poo
+    <th>Timestamp
+    <th>
+    <th>
+    <th>
 <% @changings.each do |changing| %>
   <tr>
-    <td><%= link_to 'Show', changing %></td>
-    <td><%= link_to 'Edit', edit_changing_path(changing) %></td>
-    <td><%= link_to 'Destroy', changing, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
+    <td><%= changing.pee ? "X" : "" %>
+    <td><%= changing.poo ? "X" : "" %>
+    <td><%= changing.time.strftime("%Y-%m-%d %H:%M:%S")%>
+    <td><%= link_to 'Show', changing %>
+    <td><%= link_to 'Edit', edit_change_path(changing) %>
+    <td>(<%= link_to 'x', changing, method: :delete, data: { confirm: 'Are you sure?' } %>)
 <% end %>
 </table>
 
-<br />
+<br>
 
-<%= link_to 'New Changing', new_changing_path %>
+<%= link_to 'New Changing', new_change_path %>
